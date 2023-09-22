@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet" crossorigin="anonymous">
+    <title>Nuevo sitio</title>
 </head>
 <body>
-$END$
+<header class="header" th:replace="~{fragmentos/header-static :: header}"></header>
+<main>
+    <div class="container">
+        <h1 class="pb-2 mb-4 border-bottom">Nuevo sitio</h1>
+        <a href="/sitios/nuevo" class="btn btn-outline-primary">Nuevo sitio</a>
+
+        <form action="/sitios/guardar" method="post">
+            <div class="form-group">
+                <label for="sitename">Nombre</label>
+                <input type="text" class="form-control" id="sitename" name="sitename" placeholder="Nombre del sitio">
+            </div>
+            <div class="form-group">
+                <label for="locationid">Locación</label>
+                <select class="form-control" id="locationid" name="locationid">
+                    <option value="" selected disabled>Seleccione una locación: </option>
+                    <option th:each="locacion : ${listaLocations}" th:value="${locacion.locationid}" th:text="${locacion.country + ' - ' + locacion.city}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="installationdate">Fecha de instalación</label>
+                <input type="date" class="form-control" id="installationdate" name="installationdate" placeholder="Fecha de instalación">
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitud</label>
+                <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud">
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitud</label>
+                <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitud">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/sitios" class="btn btn-danger">Cancelar</a>
+        </form>
+
+    </div>
+</main>
 </body>
 </html>
