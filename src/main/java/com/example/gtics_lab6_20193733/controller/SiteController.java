@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class SiteController {
@@ -46,8 +47,11 @@ public class SiteController {
 
     @GetMapping(value ="/sitios/borrar/{id}")
     public String borrarSitio(Model model, @PathVariable Integer id, RedirectAttributes attr) {
-        attr.addFlashAttribute("msg2", "Sitio " + siteRepository.findById(id) + " borrado exitosamente");
-        siteRepository.deleteById(id);
+        Optional<Site> sitio = siteRepository.findById(id);
+        if (sitio.isPresent()) {
+            siteRepository.deleteById(id);
+            attr.addFlashAttribute("msg2", "Sitio " + sitio.get().getSitename() + " borrado exitosamente");
+        }
         return "redirect:/sitios";
     }
 
