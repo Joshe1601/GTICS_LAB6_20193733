@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/bootstrap.min.css}" rel="stylesheet" crossorigin="anonymous">
+  <title>Estadísticas - sitios</title>
+</head>
+<body>
+<header class="header" th:replace="~{fragmentos/header-static :: header}"></header>
+<main>
+  <div class="container">
+    <h1 class="pb-2 mb-4 border-bottom">Estadísticas - sitios</h1>
+
+    <div th:if="${msg!=null}" th:text="${msg}" class="alert alert-success"></div>
+    <div th:if="${msg2!=null}" th:text="${msg2}" class="alert alert-danger"></div>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Locación</th>
+        <th scope="col">Fecha de instalación</th>
+        <th scope="col">Latitud</th>
+        <th scope="col">Longitud</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="sitio : ${listaSitios}">
+        <td th:text="${sitio.sitename}"></td>
+        <td th:text="${sitio.locationid.country + ' - ' +sitio.locationid.city}"></td>
+        <td th:text="${sitio.installationdate}"></td>
+        <td th:text="${sitio.latitude}"></td>
+        <td th:text="${sitio.longitude}"></td>
+        <td>
+          <a th:href="@{'sitios/editar' + '/' + ${sitio.siteid}}" class="btn btn-warning">Editar</a>
+          <a th:href="@{'sitios/borrar' + '/' + ${sitio.siteid}}" class="btn btn-danger">Borrar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+</main>
+</body>
+</html>
