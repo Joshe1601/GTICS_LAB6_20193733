@@ -10,6 +10,31 @@
 <main>
     <div class="container">
         <h1 class="pb-2 mb-4 border-bottom">Lista de sitios</h1>
+        <a href="/sitios/nuevo" class="btn btn-outline-primary">Nuevo sitio</a>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th scope="col"># de Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Locación</th>
+                <th scope="col">Fecha de instalación</th>
+                <th scope="col">Latitud</th>
+                <th scope="col">Longitud</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sitio : ${listaSitios}">
+                <td th:text="${empleado.getFirst_name()}"></td>
+                <td>
+                    <a th:href="@{'sitio/editar' + '/id=' + ${empleado.getEmployee_id()}}" class="btn btn-warning">Editar</a>
+                    <a th:href="@{'sitio/borrar' + '/id=' + ${empleado.getEmployee_id()}}" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
     </div>
 </main>
 </body>
