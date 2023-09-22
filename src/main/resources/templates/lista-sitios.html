@@ -13,6 +13,7 @@
         <a href="/sitios/nuevo" class="btn btn-outline-primary">Nuevo sitio</a>
 
         <div th:if="${msg!=null}" th:text="${msg}" class="alert alert-success"></div>
+        <div th:if="${msg2!=null}" th:text="${msg2}" class="alert alert-danger"></div>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -31,8 +32,8 @@
                 <td th:text="${sitio.latitude}"></td>
                 <td th:text="${sitio.longitude}"></td>
                 <td>
-                    <a th:href="@{'sitio/editar' + '/id=' + ${sitio.siteid}}" class="btn btn-warning">Editar</a>
-                    <a th:href="@{'sitio/borrar' + '/id=' + ${sitio.siteid}}" class="btn btn-danger">Borrar</a>
+                    <a th:href="@{'sitios/editar' + '/' + ${sitio.siteid}}" class="btn btn-warning">Editar</a>
+                    <a th:href="@{'sitios/borrar' + '/' + ${sitio.siteid}}" class="btn btn-danger">Borrar</a>
                 </td>
             </tr>
             </tbody>
